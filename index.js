@@ -33,6 +33,16 @@ app.post("/", function(req,res){
     .catch(error => res.status().send(error))
 })
 
+app.get("/:id", function(req, res) {
+    return Nuevos.findAll({
+        where: {
+            id:req.params.id
+        }
+    })
+    .then(Nuevos => res.status(200).send(Nuevos))
+    .catch(error => res.status().send(error))
+})
+
 let port;
 if (process.env.NODE_ENV === "production") {
     port = process.env.PORT_PROD;
